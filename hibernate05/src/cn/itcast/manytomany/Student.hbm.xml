@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.itcast.manytomany.Student" table="student">
+        <id name="id" column="id">
+            <generator class="native"></generator>  <!-- 主键生成策略 -->
+        </id>
+         <!-- 配置普通属性 -->
+        <property name="name" column="name" length="20"></property>
+        
+       <!--  多对多的关系使用set集合映射 -->
+     <set name="course" table="s_c">
+         <key column="sid"></key>   <!-- 确定关联的外键值 -->
+         <many-to-many class="cn.itcast.manytomany.Course" column="cid"></many-to-many>
+     </set>
+    </class>
+</hibernate-mapping>
